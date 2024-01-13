@@ -40,7 +40,7 @@
                         <a class="nav-link" href="{{ route('login') }}">Candidat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">ProgrammeCandidat</a>
+                        <a class="nav-link" href="{{ route('programme.index') }}">ProgrammeCandidat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Citoyens</a>
@@ -53,31 +53,38 @@
                     </li>
                     <li class="nav-item dropdown float-right">
                         @guest
-                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31" height="30"></a>
-                        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
-                            <ul class="list-style-none">
-                                <li>
-                                    <div class="">
-                                         <!-- Message -->
-                                        <a href="javascript:void(0)" class="link border-top">
-                                            <div class="d-flex no-block align-items-center p-10">
-                                                <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
-                                                <div class="m-l-10">
-                                                    <a class="dropdown-item" href="{{ route('login') }}"><i class="ti-user m-r-5 m-l-5"></i> Login</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"
+                                    height="30"></a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
+                                aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="">
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-success btn-circle"><i
+                                                            class="ti-calendar"></i></span>
+                                                    <div class="m-l-10">
+                                                        <a class="dropdown-item" href="{{ route('login') }}"><i
+                                                                class="ti-user m-r-5 m-l-5"></i> Login</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="javascript:void(0)" class="link border-top">
-                                            <div class="d-flex no-block align-items-center p-10">
-                                                <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
-                                                <div class="m-l-10">
-                                                    <a class="dropdown-item" href="{{route('register') }}"><i class="fa fa-power-on m-r-5 m-l-5"></i> Register</a>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
+                                                    <div class="m-l-10">
+                                                        <a class="dropdown-item" href="{{ route('register') }}"><i
+                                                                class="fa fa-power-on m-r-5 m-l-5"></i> Register</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        {{-- <a href="javascript:void(0)" class="link border-top">
+                                            </a>
+                                            <!-- Message -->
+                                            {{-- <a href="javascript:void(0)" class="link border-top">
                                             <div class="d-flex no-block align-items-center p-10">
                                                 <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
                                                 <div class="m-l-10">
@@ -96,24 +103,29 @@
                                                 </div>
                                             </div>
                                         </a> --}}
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         @endguest
                         @auth
-                           {{-- <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/{{ Auth::user()->name }}" alt="user" class="rounded-circle" width="31"></a> --}}
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic fw-bold" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                            {{-- <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/{{ Auth::user()->name }}" alt="user" class="rounded-circle" width="31"></a> --}}
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic fw-bold"
+                                href="" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">{{ Auth::user()->name }}</a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
+                                aria-labelledby="2">
                                 <ul class="list-style-none">
                                     <li>
                                         <div class="">
-                                             <!-- Message -->
+                                            <!-- Message -->
                                             <a href="javascript:void(0)" class="link border-top">
                                                 <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                                    <span class="btn btn-success btn-circle"><i
+                                                            class="ti-calendar"></i></span>
                                                     <div class="m-l-10">
-                                                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="ti-user m-r-5 m-l-5"></i> Logout</a>
+                                                        <a class="dropdown-item" href="{{ route('logout') }}"><i
+                                                                class="ti-user m-r-5 m-l-5"></i> Logout</a>
                                                     </div>
                                                 </div>
                                             </a>
@@ -139,7 +151,7 @@
                 <div class="row">
                     <div class="col-12 text-center text-white">
                         <h6 class="text-white text-uppercase">Sondage des Programmes Politiques</h6>
-                        <h1 class="display-3 my-4">Election <br/>présidentielle</h1>
+                        <h1 class="display-3 my-4">Election <br />présidentielle</h1>
                         <a href="{{ route('login') }}" class="btn btn-brand">Connecter</a>
                         {{-- <a href="#" class="btn btn-outline-light ms-3">Our work</a> --}}
                     </div>
@@ -174,39 +186,53 @@
                         </div>
                     @enderror
                     @error('password')
-                    <div class="alert alert-danger text-center" role="alert">
-                        {{ $message }}
-                    </div>
+                        <div class="alert alert-danger text-center" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     {{-- <label for="" class="text-white">Nom d'utilisateur</label> --}}
+                    <!-- Email Address -->
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-success text-white mb-3" id="basic-addon1"><i class="ti-user"></i></span>
+                            <span class="input-group-text bg-success text-white mb-3" id="basic-addon1"><i
+                                    class="ti-user"></i></span>
                         </div>
-                        <input type="email" name="email" class="form-control mb-3 @error('email') is-invalid
+                        <input type="email" name="email"
+                            class="form-control mb-3 @error('email') is-invalid
 
-                        @enderror" value="{{ old('email')}}" autofocus placeholder="Email">
+                        @enderror"
+                            value="{{ old('email') }}" autofocus placeholder="Email">
                     </div>
 
                     {{-- <label for="mdp" class="text-white">Mot de passe</label> --}}
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-warning text-white mb-3" id="basic-addon2"><i class="ti-pencil"></i></span>
+                            <span class="input-group-text bg-warning text-white mb-3" id="basic-addon2"><i
+                                    class="ti-pencil"></i></span>
                         </div>
-                        <input type="password" name="password" id="password" class="form-control mb-3 @error('password') is-invalid
+                        <input type="password" name="password" id="password"
+                            class="form-control mb-3 @error('password') is-invalid
 
-                        @enderror" placeholder="Mot de passe" value="{{ old('password')}}">
+                        @enderror"
+                            placeholder="Mot de passe" value="{{ old('password') }}">
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="form-check form-switch">
-                                <input type="checkbox" role="switch" name="remember" id="flexSwitchCkeckDefault" class="form-check-input mb-3" {{ old('remember')  ? 'checked' : ""}}>
+                                <input type="checkbox" role="switch" name="remember" id="flexSwitchCkeckDefault"
+                                    class="form-check-input mb-3" {{ old('remember') ? 'checked' : '' }}>
                                 <label for="flexSwitchCkeckDefault" class="form-check-label">Rappeller de moi</label>
                             </div>
                         </div>
                         <div class="col-md-6 text-end">
-                            <a href="#" class="">Mot de pass oublié ?</a>
+                            {{-- <a href="#" class="">Mot de pass oublié ?</a> --}}
+                            @if (Route::has('password.request'))
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="d-grid gap-2 text-white">
@@ -214,7 +240,8 @@
 
                     </div>
                     <div>
-                        <p class="text-center text-muted mt-5" class="">Vous n'avez pas encore de compte ? <a href="{{ route('register') }}">S'incrire</a> </p>
+                        <p class="text-center text-muted mt-5" class="">Vous n'avez pas encore de compte ? <a
+                                href="{{ route('register') }}">S'incrire</a> </p>
                     </div>
                 </form>
             </div>

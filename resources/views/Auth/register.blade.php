@@ -33,24 +33,26 @@
                 <form method="POST" action="{{ route('register') }}" class="row g-3"enctype="multipart/form-data">
                     @csrf
                     @method('post')
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="nom" class="form-label">Nom</label>
-                        <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom') }}" @error('nom') is-valid @enderror autocomplete="nom" autofocus>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('nom') }}" @error('nom') is-valid @enderror autocomplete="nom" autofocus>
+                        <x-input-error :messages="$errors->get('name')" class="mt-2 text-danger" />
                         <div class="text-danger">
                             @error('nom')
                             {{ $message }}
                             @enderror
                             </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <label for="prenom" class="form-label">Prenom</label>
                         <input type="text" class="form-control" id="prenom" value="{{ old('prenom')}}" @error('prenom') is-valid @enderror  autocomplete="prenom" name="prenom" autofocus>
+                        <x-input-error :messages="$errors->get('prenom')" class="mt-2 text-danger" />
                         <div class="text-danger">
                             @error('prenom')
                             {{ $message }}
                             @enderror
                             </div>
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-12 mt-3">
                         <label for="email" class="form-label">Email</label>
@@ -65,6 +67,7 @@
                     <div class="col-md-6 mt-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" @error('password') is-valid @enderror id="password" name="password" value="{{ old('password') }}"  autocomplete="password" autofocus>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-danger" />
                         <div class="text-danger">
                             @error('password')
                             {{ $message }}
@@ -73,8 +76,9 @@
                     </div>
 
                     <div class="col-md-6 mt-3">
-                        <label for="password-confirm" class="form-label">Password Confirm</label>
-                        <input type="password" class="form-control" @error('password') is-valid @enderror id="password-confirm" name="password-confirm" value="{{ old('password-confirm') }}"  autocomplete="password-confirm" autofocus>
+                        <label for="password_confirmation" class="form-label">Password Confirm</label>
+                        <input type="password" class="form-control" @error('password_confirmation') is-valid @enderror id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}"  autocomplete="password-confirm" autofocus>
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-danger" />
                         <div class="text-danger">
                             @error('password-confim')
                             {{ $message }}
@@ -85,15 +89,26 @@
                     <div class="col-md-12 mt-3">
                         <label for="adresse" class="form-label">Adresse</label>
                         <input type="text" class="form-control" @error('adresse') is-valid @enderror id="adresse" name="adresse" value="{{ old('adresse') }}"  autocomplete="adresse" autofocus>
+                        <x-input-error :messages="$errors->get('addresse')" class="mt-2 text-danger" />
                         <div class="text-danger">
                             @error('adresse')
                             {{ $message }}
                             @enderror
                             </div>
                     </div>
+                    {{-- <div class="col-md-12 mt-3">
+                        <label for="adresse" class="form-label">Votre Profil</label>
+
+                        <x-input-error :messages="$errors->get('profil')" class="mt-2 text-danger" />
+                        <div class="text-danger">
+                            @error('adresse')
+                            {{ $message }}
+                            @enderror
+                            </div>
+                    </div> --}}
 
                     <div class="col-md-12 mt-3">
-                        <label for="photo" class="form-label">Votre Profil</label>
+                        <label for="photo" class="form-label">Photo</label>
                         <input type="file"class="form-control"  @error('photo') is-valid @enderror
                         name="photo" id="photo" >
                         <div class="text-danger">
@@ -102,13 +117,21 @@
                         @enderror
                         </div>
                     </div>
-                    <div class="col-md-12 mt-3">
+                    <div class="col-md-6 mt-3">
                         <div class="form-check-info">
                             <input type="checkBox" value="" id="ckeck" class="form-check-input-info">
                             <label for="ckeck" class="form-ckeck-input">Agree terms</label>
                         </div>
 
                     </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="flex items-center justify-end text-info">
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                                {{ __('Déjà inscrit?') }}
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-lg btn-block">S'inscrire</button>
                     </div>

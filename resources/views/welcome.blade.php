@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -20,7 +20,7 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
-                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
@@ -137,4 +137,395 @@
             </div>
         </div>
     </body>
+</html> --}}
+
+{{-- <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("You're logged in!") }}
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Sondage</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="assets2/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="assets2/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="assets2/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="assets2/css/style.css" rel="stylesheet">
+        <link href="dist/css/style.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <style>
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            a,
+            span,
+            div {
+                color: black !important;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar start -->
+        {{-- <div class="container-fluid fixed-top"> --}}
+            <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ route('login') }}">SPPE<span class="dot">.</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Candidat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('programme.index') }}">ProgrammeCandidat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Citoyens</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Secteur</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                @guest
+                                 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                                <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                                    <ul class="list-style-none">
+                                        <li>
+                                            <div class="">
+                                                 <!-- Message -->
+
+                                                <a href="javascript:void(0)" class="link border-top">
+                                                    <div class="d-flex no-block align-items-center p-10">
+                                                        <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                                        <div class="m-l-10">
+                                                            <a class="dropdown-item" href="{{ route('login') }}"><i class="ti-user m-r-5 m-l-5"></i> Login</a>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <!-- Message -->
+                                                <a href="javascript:void(0)" class="link border-top">
+                                                    <div class="d-flex no-block align-items-center p-10">
+                                                        <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
+                                                        <div class="m-l-10">
+                                                            <a class="dropdown-item" href="{{ route('register') }}"><i class="ti-calendar"></i>Register</a>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                @endguest
+                                @auth
+                                   {{-- <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/{{ Auth::user()->name }}" alt="user" class="rounded-circle" width="31"></a> --}}
+                                    {{-- <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic fw-bold" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> --}}
+                                        {{-- <img src="{{asset('storage/images/'.Auth::User()->photo)}}" alt="Photo de profil"> --}}
+                                        <div>
+                                            <a href="#" class="my-auto">
+                                                <i class="fas fa-user fa-2x"></i>
+                                            </a>
+                                            <div class="profile-initial">
+                                                {{-- {{ Auth::user()->name}} --}}
+                                            {{-- <i class="ti-angle-down"></i> --}}
+
+                                            </div>
+                                        </div>
+
+
+                                        </a>
+                                    {{-- <img src="{{ asset('storage/images/'.photo) }}" style="height: 50px;width:100px;"> --}}
+
+
+                                    <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                                        <ul class="list-style-none">
+                                            <li>
+                                                <div class="">
+                                                     <!-- Message -->
+                                                     <a href="javascript:void(0)" class="link border-top">
+                                                        <div class="d-flex no-block align-items-center p-10">
+                                                            <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                                            <div class="m-l-10">
+                                                                {{-- <a class="dropdown-item" href="{{ route('logout') }}"><i class="ti-user m-r-5 m-l-5"></i>{{(Auth::user()->name) }}</a> --}}
+                                                                <a class="dropdown-item" href="{{ route('logout') }}">{{(Auth::user()->email) }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                     <a href="javascript:void(0)" class="link border-top">
+                                                        <div class="d-flex no-block align-items-center p-10">
+                                                            <span class="btn btn-success btn-circle"><i class="fa fa-power-off m-r-5 m-l-5"></i></span>
+                                                            <div class="m-l-10">
+                                                                <a class="dropdown-item" href="{{ route('logout') }}">Logout </a>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+
+                                                    <!-- Message -->
+
+
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                @endauth
+                            </li>
+                        </ul>
+                        {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            class="btn btn-brand ms-lg-3">Contact</a> --}}
+                    </div>
+                </div>
+            </nav>
+        {{-- </div> --}}
+        <!-- Navbar End -->
+
+
+        <!-- Modal Search Start -->
+        {{-- <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <!-- Modal Search End -->
+
+        <!-- Vesitable Shop Start-->
+        <div class="container-fluid vesitable mt-4">
+            <div class="container">
+                <h1 class="mt-4 text-center">Nos Candidat</h1>
+
+                    <div class="owl-carousel vegetable-carousel justify-content-center">
+                    @foreach ($listeCand as $lc)
+
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item"> --}}
+                         <div class="shadow rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                {{-- <img src="{{$lc->photo}}" class="img-fluid w-100 rounded-top" alt=""> --}}
+                                @if ($lc->photo)
+                                <img src="{{ asset('/storage/images/' .$lc->photo) }}"
+                                     class="img-fluid w-100 rounded-top">
+                            @else
+                                <img src="{{ asset('/storage/images/photo.png') }}"
+                                    style="height: 50px;width:100px;">
+                            @endif
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>{{ $lc->nom.' '.$lc->prenom }}</h4>
+                                {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p> --}}
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">{{ $lc->parti }}</p>
+                                    <a href="#" class="btn  border border-secondary rounded-pill px-3 text-primary"><i class="fas fa-list-ul">Programme</i></a>
+                                </div>
+                            </div>
+                        </div>
+                @endforeach
+
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="assets2/img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>Parsely</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="assets2/img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>Banana</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="assets2/img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>Bell Papper</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="assets2/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>Potatoes</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="assets2/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>Parsely</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="assets2/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>Potatoes</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="assets2/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                            <div class="p-4 rounded-bottom">
+                                <h4>Parsely</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+            </div>
+        </div>
+        <!-- Vesitable Shop End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Back to Top -->
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets2/lib/easing/easing.min.js"></script>
+    <script src="assets2/lib/waypoints/waypoints.min.js"></script>
+    <script src="assets2/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="assets2/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="assets2/js/main.js"></script>
+    </body>
+
 </html>
+
+
+
