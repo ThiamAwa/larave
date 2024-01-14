@@ -24,155 +24,33 @@
 <body>
     @extends('partials.navbar')
     @section('content')
-  {{-- <div class="container-scroller"> --}}
+    <div class="col-md-6 offset-3 mt-5">
+        <div class="card">
+           <div class="card-body">
+               <h4 class="card-title">Programme de {{ $candidat->prenom.' '.$candidat->nom }}</h4>
+           </div>
+           @foreach ( $candidat->programme as $programme )
 
-    {{-- <div class="container-fluid page-body-wrapper "> --}}
+           <div class="comment-widgets scrollable">
+               <div class="d-flex flex-row comment-row">
+                   {{-- <div class="p-2"><img src="assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle"></div> --}}
+                   <div class="comment-text w-100">
+                       <h6 class="font-medium">{{ $programme->titre }}</h6>
+                       <span class="m-b-15 d-block">{{ $programme->contenu }}</span>
+                       <div class="comment-footer">
+                           <a type="submit" class="btn btn-danger btn-sm float-right" href="{{ route('programmeSecteur',$programme) }}">Voir Secteur</a>
+                       </div>
+                   </div>
+               </div>
+               <!-- Comment Row -->
 
-      <div class="main-panel col-md-8 offset-2 mt-4">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-lg-12 grid-margin">
-              <div class="card">
-                @foreach ($secteur as $sc)
-                <div class="card-body">
-                  <h4 class="card-title">{{ $sc->libelle }}</h4>
-                  <div class="row">
-                    <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton1">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                    {{-- <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton2">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton3">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton4">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton8">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton5">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton6">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 dropdown-menu-static-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton7">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div> --}}
-                  </div>
-                </div>
-              @endforeach
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
+           </div>
+           @endforeach
 
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    {{-- </div> --}}
-    <!-- page-body-wrapper ends -->
-  {{-- </div> --}}
+       </div>
+        <!-- Card -->
+
+   </div>
   @endsection
   <!-- container-scroller -->
   <!-- base:js -->

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('contenu');
             $table->string('document');
             $table->foreignIdFor(\App\Models\candidat::class)->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\secteur::class)->nullable()->constrained()->cascadeOnDelete();
+            // $table->foreignIdFor(\App\Models\secteur::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

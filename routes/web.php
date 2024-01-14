@@ -45,10 +45,10 @@ Route::post('/storeC',[App\Http\Controllers\CandidatController::class,'store'])-
 
 Route::delete('/deleteCandidat/{id}',[\App\Http\Controllers\CandidatController::class,'destroy'])->name('deleteCandidat');
 
-// Route::get('/updateCandidat/{id}',[\App\Http\Controllers\CandidatController::class,'edit'])->name('updateCandidat');
+Route::get('/updateCandidat/{id}',[\App\Http\Controllers\CandidatController::class,'edit'])->name('updateCandidat');
 
-Route::put('/mjCandidat/{id}',[\App\Http\Controllers\CandidatController::class,'update'])->name('mjCandidat');
-Route::post('/edit',[\App\Http\Controllers\CandidatController::class,'edit']);
+Route::put('/mjCandidat',[\App\Http\Controllers\CandidatController::class,'update'])->name('mjCandidat');
+// Route::post('/edit/{id}',[\App\Http\Controllers\CandidatController::class,'edit'])->name('edit');
 
 
 //Programme
@@ -62,5 +62,10 @@ Route::resource('/sondage',App\Http\Controllers\sondageController::class);
 Route::get('/UserElect', [App\Http\Controllers\UserelectController::class,'index'])->name('UserElect');
 
 Route::get('/ProgrammeCandidat/{id}',[App\Http\Controllers\ProgrammeCandidatController::class,'index'])->name('programmeCandidat');
+Route::get('/ProgrammeSecteur/{programme}',[App\Http\Controllers\ProgrammeSecteurController::class,'index'])->name('programmeSecteur');
+
+Route::get('/UserElect1',[App\Http\Controllers\UserelectController::class,'store'])->name('userElect');
+
+
 
 require __DIR__.'/auth.php';

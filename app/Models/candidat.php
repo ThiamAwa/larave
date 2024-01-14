@@ -16,4 +16,21 @@ class candidat extends Model
         'biographie',
         'photo'
     ];
+    // public function programme()
+    // {
+    //     return $this->hasOne(Programme::class);
+    // }
+    // public function programmes()
+    // {
+    //     return $this->hasMany(Programme::class);
+    // }
+    public function programme()
+    {
+        return $this->hasMany(Programme::class,'candidat_id');
+    }
+    // public function programmes()
+    // {
+    //     return $this->belongsToMany(Programme::class,'candidat_id');
+    // }
+
 }

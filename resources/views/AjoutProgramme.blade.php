@@ -44,8 +44,8 @@
                                        {{ $message }}
                                    @enderror
                                </div>
-                               <label for="">Secteur</label>
-                                <select name="secteur_id" id="" class="form-control">
+                               {{-- <label for="">Secteur</label> --}}
+                                {{-- <select name="secteur_id" id="" class="form-control">
                                     <option value="">Secteur</option>
                                     @foreach ($secteur as $pp )
                                     <option value="{{ $pp->id }}">{{ $pp->libelle}}</option>
@@ -55,7 +55,7 @@
                                     @error('secteur')
                                         {{ $message }}
                                     @enderror
-                                </div>
+                                </div> --}}
 
 
                             </div>

@@ -77,14 +77,16 @@ class CandidatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request )
+    public function edit(string $id )
     {
 
-        $where=array('id'=>$request->id);
+        // $where=array('id'=>$request->id);
 
-        $listeC = candidat::where($where)->first();
+        // $listeC = candidat::where($where)->first();
 
-        return Response()->json($listeC);
+        // return Response()->json($listeC);
+        $listeC=new candidat();
+
 
         // if($listeC){
         //     // $id=$listeC->id;
@@ -94,13 +96,8 @@ class CandidatController extends Controller
 
         // }
 
-        // return view('createC',['listeC'=>$listeC]);
+        return view('ModifCandidat',['listeC'=>$listeC->find($id)]);
         // return view('createC', ['listeC' => $listeC->find($id), 'showr' => true]);
-
-
-
-
-
 
     }
 
@@ -109,21 +106,27 @@ class CandidatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // $listeC=candidat::find($request['id']);
-        $listeC = Candidat::findOrFail($id);
-        $id=$listeC->id;
-        $imageName='';
-        if($request->hasFile('photo')){
+        $request->validate([
+            'nom'=>'required',
+            'prenom'=>'required',
+            'parti'=>'required',
+            'biographie'=>'required',
+            'photo'=>'required|mimes:jpg,png,jpeg,gif',
+            // 'validat' => $request->has('validat') ? true : false
+
+        ]);
+
+        $listeC=candidat::find($request['id']);
+        // $listeC = Candidat::findOrFail($id);
+        // $id=$listeC->id;
+        // $imageName='';
+        // if($request->hasFile('photo')){
             $imageName = time() . '.' . $request->photo->extension();
             $request->photo->storeAs('public/images', $imageName);
 
-            if($listeC->photo){
-                Storage::delete('public/images/'. $listeC->photo);
-            }
 
-        }else{
-            $imageName=$listeC->photo;
-        }
+
+
         $listeC->nom=$request['nom'];
         $listeC->prenom=$request['prenom'];
         $listeC->parti=$request['parti'];
@@ -142,4 +145,13 @@ class CandidatController extends Controller
         candidat::destroy($id);
         return to_route('listeC');
     }
+    // public function listeProgramme(Candidat $candidat){
+    //     $programme =$candidat->programme;
+    //     return $programme;
+
+    // }
 }
+
+// Candidat.php (candidat model)
+
+

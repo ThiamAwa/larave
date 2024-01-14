@@ -374,7 +374,7 @@
                                                 <td>
                                                     {{-- <a class="btn btn-sm btn-success text-white" href="{{ route('updateCandidat',$lc) }}">Modifier</a> --}}
                                                     {{-- <button type="button" onclick="loadModal($lc->id)" class="btn btn-success text-white" data-toggle="modal" data-target="#exampleModalModif">Modifier --}}
-                                                    <a type="button" onclick="loadModal({{$lc->id}})" class="btn btn-success text-white" data-toggle="modal" href="javascript:void(0)" data-target="#exampleModalModif">Modifier </a>
+                                                    <a type="button"  class="btn btn-success text-white" href="{{route('updateCandidat',$lc)}}">Modifie </a>
 
                                                         {{-- <button  onclick="loadModal($lc->id)" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModalModif" ><i class="fas fa-edit text-white"></i></button> --}}
                                                    {{-- </button> --}}
@@ -509,7 +509,7 @@
     </div>
   </div>
     {{-- Modifier --}}
-  <div class="modal fade" id="exampleModalModif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  {{-- <div class="modal fade" id="exampleModalModif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -523,7 +523,7 @@
                 @csrf
                 {{-- @method('put') --}}
 
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <input type="hidden" id="selectedCandidatId" name="selectedCandidatId" value="">
                     Nom<input type="text"class="form-control"  @error('nom') is-valid @enderror
                      name="nom" id="nom" value="" >
@@ -550,9 +550,9 @@
                     <textarea    class="form-control"  @error('biographie') is-valid @enderror
                     name="biographie" id="biographie">
                     {{-- value="{{ $listeC->first()->biographie }}"   >{{ old('biographie', $listeC->first()->biographie ?? '') }} --}}
-                    </textarea>
+                    {{-- </textarea> --}}
 
-                    <div class="text-danger">
+                    {{-- <div class="text-danger">
                         @error('biographie')
                             {{ $message }}
                         @enderror
@@ -561,31 +561,31 @@
                     name="photo" id="photo"
                      {{-- value="{{ $listeC->first()->photo }}"  --}}
                       >
-                   <div class="text-danger"
+                   {{-- <div class="text-danger"
                    >
                        @error('photo')
                            {{ $message }}
                        @enderror
-                   </div>
-                   <img src="{{ $lc->first()->photo ? asset('storage/images/'.$lc->first()->photo) : asset('storage/images/photo.png') }}" style="height: 50px; width: 100px;">
+                   </div> --}}
 
 
 
-                   <div class="form-check form-switch mt-3">
+
+                   {{-- <div class="form-check form-switch mt-3">
 
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="validat" {{ $listeC->first()->validat ? 'checked' : '' }} >
                     <label class="form-check-label" for="flexSwitchCheckDefault">Validate</label>
                   </div>
 
 
-                </div>
-                <button class="btn btn-success mt-2" type="submit" >Modifier</button>
+                </div> --}}
+                {{-- <button class="btn btn-success mt-2" type="submit" >Modifier</button>
             </form>
         </div>
 
       </div>
     </div>
-  </div>
+  </div>  --}}
 
 
 

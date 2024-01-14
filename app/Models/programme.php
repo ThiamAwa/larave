@@ -10,16 +10,27 @@ class programme extends Model
     use HasFactory;
     public function candidat(){
 
-       return $this->belongsTo(candidat::class);
+       return $this->belongsTo(candidat::class,'candidat_id');
 
 
 
     }
-    public function secteur(){
+    // public function secteur(){
 
-        return $this->belongsTo(secteur::class);
+    //     return $this->belongsTo(secteur::class);
+
+    public function secteurs()
+    {
+        return $this->hasMany(Secteur::class,'programme_id');
+    }
 
 
+    //  }
 
-     }
+    //  public function secteurs()
+    //  {
+    //      return $this->hasMany(Secteur::class);
+    //  }
+
+
 }

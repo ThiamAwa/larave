@@ -12,29 +12,15 @@ class ProgrammeCandidatController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function secteur()
-    {
-        return $this->hasMany(Secteur::class);
-    }
+
 
     public function index($id)
     {
-            // $PC = candidat::all();
-            // return view('programmeCandidat', ['pc' => $PC]);
-            // return $this->hasMany(Secteur::class);
-                // Récupérer le candidat avec ses secteurs
-                $candidat = Candidat::with('secteur')->find($id);
+                   // Récupérer le candidat avec le programme associé
+        $candidat=candidat::with('programme')->find($id);
 
-                // Vérifier si le candidat existe
-                if (!$candidat) {
-                    abort(404, 'Candidat non trouvé');
-                }
-
-                // Récupérer les secteurs associés au candidat
-                $secteurs = $candidat->secteurs;
-
-                // Vous pouvez passer les secteurs à une vue ou les utiliser selon vos besoins
-                return view('programmeCandidat', ['secteurs' => $secteurs]);
+        // Passer les données à la vue
+        return view('ProgrammeCandidat', ['candidat' => $candidat]);
 
 
     }

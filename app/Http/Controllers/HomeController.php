@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\programme;
+use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\candidat;
 
 
@@ -18,8 +19,9 @@ class HomeController extends Controller
         if(Auth::id()){
             $usertype=Auth()->user()->usertype;
 
-            if($usertype=='admin'){
+            if($usertype==='admin'){
               return view('master');
+
 
             }else if($usertype=='user'){
               return view('UserElect');

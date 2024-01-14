@@ -34,67 +34,41 @@ class ProgrammeController extends Controller
     }
 
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'candidat_id' => 'required',
+            'titre' => 'required',
+            'contenu' => 'required',
+            'document' => 'required|mimes:pdf,doc,docx',
+            // 'secteur_id' => 'required',
+        ]);
+
+        $listeP = new Programme();
+        $listeP->candidat_id = $request->input('candidat_id');
+        // $listeP->secteur_id = $request->input('secteur_id');
+        $listeP->titre = $request->input('titre');
+        $listeP->contenu = $request->input('contenu');
+
+        // Obtenez le nom original du fichier
+        $originalFileName = $request->file('document')->getClientOriginalName();
+
+        // Utilisez le nom original du fichier pour stocker le document
+        $filePath = $request->file('document')->storeAs($request->input('candidat_id'), $originalFileName);
+        $listeP->document = $filePath;
+
+        $listeP->save();
+
+        return redirect()->route('programme.index')->with('success', 'Programme ajouté avec succès. Nom du document : ' . $originalFileName);
+    }
+
+
+
 
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'candidat_id'=>'required',
-    //         'titre'=>'required',
-    //         'contenu'=>'required',
-    //         'document'=>'required',
-    //         'secteur_id'=>'required',
 
-    //     ]);
-
-
-
-    //     // candidat::create($request->all());
-    //     $listeP=new programme();
-    //     $listeP->candidat_id=$request['candidat_id'];
-    //     $listeP->secteur_id=$request['secteur_id'];
-    //     $listeP->titre=$request['titre'];
-    //     $listeP->contenu=$request['contenu'];
-    //     if ($request->file('document')) {
-    //         $filePath = $request->file('document')->store($request['candidat_id']);
-    //         $listeP->document = $filePath;
-    //     }
-    //     $listeP->save();
-    //     return to_route('programme.index');
-    // }
-
-    /**
-     * Display the specified resource.
-     */
-    public function store(Request $request)
-{
-    $request->validate([
-        'candidat_id' => 'required',
-        'titre' => 'required',
-        'contenu' => 'required',
-        'document' => 'required|mimes:pdf,doc,docx',
-        'secteur_id' => 'required',
-    ]);
-
-    $listeP = new Programme();
-    $listeP->candidat_id = $request->input('candidat_id');
-    $listeP->secteur_id = $request->input('secteur_id');
-    $listeP->titre = $request->input('titre');
-    $listeP->contenu = $request->input('contenu');
-
-    // Obtenez le nom original du fichier
-    $originalFileName = $request->file('document')->getClientOriginalName();
-
-    // Utilisez le nom original du fichier pour stocker le document
-    $filePath = $request->file('document')->storeAs($request->input('candidat_id'), $originalFileName);
-    $listeP->document = $filePath;
-
-    $listeP->save();
-
-    return redirect()->route('programme.index')->with('success', 'Programme ajouté avec succès. Nom du document : ' . $originalFileName);
-}
 
     public function show(string $id)
     {
@@ -149,13 +123,13 @@ public function update(Request $request, $id)
         'titre' => 'required',
         'contenu' => 'required',
         'document' => 'required|mimes:pdf,doc,docx', // Ajoutez les extensions de
-        'secteur_id' => 'required',
+        // 'secteur_id' => 'required',
     ]);
 
 
     $listeP = Programme::findOrFail($id);
     $listeP->candidat_id = $request->input('candidat_id');
-    $listeP->secteur_id = $request->input('secteur_id');
+    // $listeP->secteur_id = $request->input('secteur_id');
     $listeP->titre = $request->input('titre');
     $listeP->contenu = $request->input('contenu');
 

@@ -22,7 +22,7 @@
                                 <th class="border-0">Titre</th>
                                 <th class="border-0">Contenu</th>
                                 <th class="border-0">Document</th>
-                                <th class="border-0">Secteur</th>
+                                {{-- <th class="border-0">Secteur</th> --}}
                                 <th class="border-0">Action</th>
                                 <th></th>
 
@@ -44,7 +44,7 @@
                                  <td class="border-0">{{ $lp->titre}}</td>
                                 <td class="border-0">{{ $lp->contenu}}</td>
                                 <td class="border-0">{{ $lp->document}}</td>
-                                <td class="border-0">{{ $lp->secteur->libelle}}</td>
+                                {{-- <td class="border-0">{{ $lp->secteur->libelle}}</td> --}}
 
 
                                 <td>

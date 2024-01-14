@@ -44,12 +44,12 @@
                                        {{ $message }}
                                    @enderror
                                </div>
-                               <label for="">Secteur</label>
+                               {{-- <label for="">Secteur</label>
                                <select name="secteur_id" id="" class="form-control">
                                     @foreach ($secteur as $p )
                                     <option value="{{ $p->id ? $p->id : old('secteur_id')}}">{{ $p->libelle }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
 
                                 <div class="text-danger">
                                     @error('secteur')
